@@ -1,0 +1,37 @@
+{
+  "name": "graphql-expenses-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node backend/index.js",
+    "dev": "nodemon backend/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KAMO333/GraphQL-expenses-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KAMO333/GraphQL-expenses-app/issues"
+  },
+  "homepage": "https://github.com/KAMO333/GraphQL-expenses-app#readme",
+  "dependencies": {
+    "@apollo/server": "^4.11.3",
+    "@graphql-tools/merge": "^9.0.20",
+    "bcryptjs": "^3.0.2",
+    "connect-mongodb-session": "^5.0.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "graphql": "^16.10.0",
+    "graphql-passport": "^0.6.8",
+    "mongoose": "^8.10.1",
+    "passport": "^0.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
