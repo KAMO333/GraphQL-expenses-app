@@ -1,4 +1,5 @@
 import { useState } from "react";
+import TransactionFormSkeleton from "../components/skeletons/TransactionFormSkeleton";
 
 const TransactionPage = () => {
   const [formData, setFormData] = useState({
