@@ -14,13 +14,17 @@ import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHt
 import { buildContext } from "graphql-passport";
 
 import mergedResolvers from "./resolvers/index.js";
-import mergedTypeDef from "./typeDefs/index.js";
+import mergedTypeDefs from "./typeDefs/index.js";
 
 import { connectDB } from "./db/connectDB.js";
 import { configurePassport } from "./passport/passport.config.js";
 
+// import job from "./cron.js";
+
 dotenv.config();
 configurePassport();
+
+// job.start();
 
 const __dirname = path.resolve();
 const app = express();
@@ -53,7 +57,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 const server = new ApolloServer({
-  typeDefs: mergedTypeDef,
+  typeDefs: mergedTypeDefs,
   resolvers: mergedResolvers,
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
 });
@@ -77,12 +81,14 @@ app.use(
   })
 );
 
+// npm run build will build your frontend app, and it will the optimized version of your app
 app.use(express.static(path.join(__dirname, "frontend/dist")));
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "frontend/dist", "index.html"));
 });
 
+// Modified server startup
 await new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
 await connectDB();
 
