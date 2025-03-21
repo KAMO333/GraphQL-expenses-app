@@ -3,7 +3,7 @@ import https from "https";
 
 const URL = "https://graphql-expenses-app.onrender.com";
 
-const job = new cron.CronJob("*/14 * * * *", function () {
+const job = new cron.CronJob("0 0 * * 0", function () {
   https
     .get(URL, (res) => {
       if (res.statusCode === 200) {
@@ -18,6 +18,12 @@ const job = new cron.CronJob("*/14 * * * *", function () {
 });
 
 export default job;
+
+// Use it in your main server file
+
+import job from "./cron.js";
+
+job.start();
 
 // CRON JOB EXPLANATION:
 // Cron jobs are scheduled tasks that run periodically at fixed intervals or specific times
