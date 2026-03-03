@@ -22,9 +22,9 @@ export default job;
 
 // Use it in your main server file
 
-import job from "./cron.js";
+// import job from "./cron.js";
 
-job.start();
+// job.start();
 
 // CRON JOB EXPLANATION:
 // Cron jobs are scheduled tasks that run periodically at fixed intervals or specific times

@@ -1,0 +1,18 @@
+services:
+  test-db:
+    image: mongo:4.4
+    container_name: expense-test-db
+    ports:
+      - "27018:27017"
+
+  test-runner:
+    build: .
+    container_name: expense-test-runner
+    environment:
+      - MONGO_URI=mongodb://test-db:27017/test_db
+      - SESSION_SECRET=test_secret
+      - NODE_OPTIONS=--experimental-vm-modules
+    depends_on:
+      - test-db
+    # This command runs your tests then exits
+    command: npm test
