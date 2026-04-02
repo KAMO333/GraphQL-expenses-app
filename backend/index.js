@@ -50,7 +50,7 @@ app.use(
       httpOnly: true, // this option prevents the Cross-Site Scripting (XSS) attacks
     },
     store: store,
-  })
+  }),
 );
 
 app.use(passport.initialize());
@@ -70,7 +70,7 @@ await server.start();
 app.use(
   "/graphql",
   cors({
-    origin: "http://localhost:3000",
+    origin: process.env.CLIENT_ORIGIN || "http://localhost:3000",
     credentials: true,
   }),
   express.json(),
@@ -78,7 +78,7 @@ app.use(
   // an Apollo Server instance and optional configuration options
   expressMiddleware(server, {
     context: async ({ req, res }) => buildContext({ req, res }),
-  })
+  }),
 );
 
 // npm run build will build your frontend app, and it will the optimized version of your app
