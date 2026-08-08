@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "NODE_ENV=development nodemon --exec tsx backend/index.js",
     "start": "NODE_ENV=production tsx backend/index.js",
-    "build": "npm install --prefix frontend && npm run build --prefix frontend && npx prisma generate && npx prisma migrate deploy",
+    "build": "npm install --prefix frontend --include=dev && npm run build --prefix frontend && npx prisma generate && npx prisma migrate deploy",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },
   "repository": {
