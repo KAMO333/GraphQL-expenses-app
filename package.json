@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=production node backend/index.js",
+    "start": "NODE_ENV=production tsx backend/index.js",
     "dev": "NODE_ENV=development nodemon --exec tsx backend/index.js",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "build": "npm install && cd frontend && npm install --include=dev && npm run build"
