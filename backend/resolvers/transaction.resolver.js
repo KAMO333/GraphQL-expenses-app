@@ -1,111 +1,74 @@
-import Transaction from "../models/transaction.model.js";
-import User from "../models/user.model.js";
+import prisma from "../db/prisma.js";
 
 const transactionResolver = {
   Query: {
     transactions: async (_, __, context) => {
-      try {
-        if (!context.getUser()) throw new Error("Unauthorized");
-        const userId = await context.getUser()._id;
+      const user = await context.getUser();
+      if (!user) throw new Error("Unauthorized");
 
-        const transactions = await Transaction.find({ userId });
-        return transactions;
-      } catch (err) {
-        console.error("Error getting transactions:", err);
-        throw new Error("Error getting transactions");
-      }
+      return await prisma.transaction.findMany({
+        where: { userId: user.id },
+      });
     },
     transaction: async (_, { transactionId }) => {
-      try {
-        const transaction = await Transaction.findById(transactionId);
-        return transaction;
-      } catch (err) {
-        console.error("Error getting transaction:", err);
-        throw new Error("Error getting transaction");
-      }
+      return await prisma.transaction.findUnique({
+        where: { id: transactionId },
+      });
     },
     categoryStatistics: async (_, __, context) => {
-      if (!context.getUser()) throw new Error("Unauthorized");
+      const user = await context.getUser();
+      if (!user) throw new Error("Unauthorized");
 
-      const userId = context.getUser()._id;
-      const transactions = await Transaction.find({ userId });
-      const categoryMap = {};
-
-      // const transactions = [
-      // 	{ category: "expense", amount: 50 },
-      // 	{ category: "expense", amount: 75 },
-      // 	{ category: "investment", amount: 100 },
-      // 	{ category: "saving", amount: 30 },
-      // 	{ category: "saving", amount: 20 }
-      // ];
-
-      transactions.forEach((transaction) => {
-        if (!categoryMap[transaction.category]) {
-          categoryMap[transaction.category] = 0;
-        }
-        categoryMap[transaction.category] += transaction.amount;
+      const groupedTransactions = await prisma.transaction.groupBy({
+        by: ["category"],
+        where: { userId: user.id },
+        _sum: { amount: true },
       });
 
-      // categoryMap = { expense: 125, investment: 100, saving: 50 }
-
-      return Object.entries(categoryMap).map(([category, totalAmount]) => ({
-        category,
-        totalAmount,
+      return groupedTransactions.map((group) => ({
+        category: group.category,
+        totalAmount: group._sum.amount || 0,
       }));
-      // return [ { category: "expense", totalAmount: 125 }, { category: "investment", totalAmount: 100 }, { category: "saving", totalAmount: 50 } ]
     },
   },
   Mutation: {
     createTransaction: async (_, { input }, context) => {
-      try {
-        const newTransaction = new Transaction({
-          ...input,
-          userId: context.getUser()._id,
-        });
-        await newTransaction.save();
-        return newTransaction;
-      } catch (err) {
-        console.error("Error creating transaction:", err);
-        throw new Error("Error creating transaction");
-      }
+      const user = await context.getUser();
+      if (!user) throw new Error("Unauthorized");
+
+      return await prisma.transaction.create({
+        data: {
+          description: input.description,
+          paymentType: input.paymentType,
+          category: input.category,
+          amount: input.amount,
+          location: input.location,
+          date: new Date(input.date),
+          userId: user.id,
+        },
+      });
     },
     updateTransaction: async (_, { input }) => {
-      try {
-        const updatedTransaction = await Transaction.findByIdAndUpdate(
-          input.transactionId,
-          input,
-          {
-            new: true,
-          }
-        );
-        return updatedTransaction;
-      } catch (err) {
-        console.error("Error updating transaction:", err);
-        throw new Error("Error updating transaction");
+      const { transactionId, ...updateData } = input;
+      if (updateData.date) {
+        updateData.date = new Date(updateData.date);
       }
+
+      return await prisma.transaction.update({
+        where: { id: transactionId },
+        data: updateData,
+      });
     },
     deleteTransaction: async (_, { transactionId }) => {
-      try {
-        const deletedTransaction = await Transaction.findByIdAndDelete(
-          transactionId
-        );
-        return deletedTransaction;
-      } catch (err) {
-        console.error("Error deleting transaction:", err);
-        throw new Error("Error deleting transaction");
-      }
+      return await prisma.transaction.delete({
+        where: { id: transactionId },
+      });
     },
   },
   Transaction: {
+    _id: (parent) => parent.id,
     user: async (parent) => {
-      const userId = parent.userId;
-      try {
-        const user = await User.findById(userId);
-        return user;
-      } catch (err) {
-        console.error("Error getting user:", err);
-        throw new Error("Error getting user");
-      }
+      return await prisma.user.findUnique({ where: { id: parent.userId } });
     },
   },
 };

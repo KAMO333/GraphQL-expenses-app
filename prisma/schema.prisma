@@ -1,0 +1,52 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  // The URL is handled by prisma.config.ts in v7
+}
+
+model User {
+  id             String        @id @default(uuid())
+  username       String        @unique
+  name           String
+  password       String
+  profilePicture String?       @default("")
+  gender         Gender
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  transactions   Transaction[]
+}
+
+model Transaction {
+  id          String   @id @default(uuid())
+  userId      String
+  description String
+  paymentType PaymentType
+  category    Category
+  amount      Float
+  location    String?  @default("Unknown")
+  date        DateTime
+  
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+enum Gender {
+  male
+  female
+}
+
+enum PaymentType {
+  cash
+  card
+}
+
+enum Category {
+  saving
+  expense
+  investment
+}

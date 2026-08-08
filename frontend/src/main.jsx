@@ -8,11 +8,11 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 const client = new ApolloClient({
   uri:
-    import.meta.env.VITE_NODE_ENV === "development"
+    import.meta.env.MODE === "development"
       ? "http://localhost:4000/graphql"
-      : "/graphql", // the URL of our GraphQL server.
-  cache: new InMemoryCache(), // Apollo Client uses to cache query results after fetching them.
-  credentials: "include", // This tells Apollo Client to send cookies along with every request to the server.
+      : "/graphql",
+  cache: new InMemoryCache(),
+  credentials: "include",
 });
 
 createRoot(document.getElementById("root")).render(
@@ -24,5 +24,5 @@ createRoot(document.getElementById("root")).render(
         </ApolloProvider>
       </GridBackground>
     </BrowserRouter>
-  </StrictMode>
+  </StrictMode>,
 );

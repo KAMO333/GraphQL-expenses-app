@@ -1,18 +1,21 @@
 services:
   test-db:
-    image: mongo:4.4
+    image: postgres:15
     container_name: expense-test-db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: expense_db
     ports:
-      - "27018:27017"
+      - "5433:5432" # Changed host port to 5433 to avoid collisions
 
   test-runner:
     build: .
     container_name: expense-test-runner
     environment:
-      - MONGO_URI=mongodb://test-db:27017/test_db
+      - DATABASE_URL=postgresql://admin:password123@test-db:5432/expense_db?schema=public
       - SESSION_SECRET=test_secret
       - NODE_OPTIONS=--experimental-vm-modules
     depends_on:
       - test-db
-    # This command runs your tests then exits
     command: npm test
