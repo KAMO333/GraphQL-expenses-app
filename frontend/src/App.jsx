@@ -40,7 +40,38 @@ const App = () => {
         />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-      <Toaster />
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+        toastOptions={{
+          style: {
+            background: "#ffffff",
+            color: "#0f172a",
+            boxShadow: "0 8px 30px rgba(0,0,0,0.08)",
+            borderRadius: "9999px",
+            padding: "16px 24px",
+            fontSize: "14px",
+            fontWeight: "600",
+            border: "1px solid #f1f5f9",
+          },
+
+          success: {
+            duration: 3000,
+            iconTheme: {
+              primary: "#7c3aed",
+              secondary: "#ffffff",
+            },
+          },
+
+          error: {
+            duration: 4000,
+            iconTheme: {
+              primary: "#e11d48",
+              secondary: "#ffffff",
+            },
+          },
+        }}
+      />
     </>
   );
 };

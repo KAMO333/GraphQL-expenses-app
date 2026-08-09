@@ -39,7 +39,8 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-[85vh] px-4">
+    // Added py-16 here to create a buffer at the top and bottom of the viewport
+    <div className="flex items-center justify-center min-h-[85vh] px-4 py-16">
       <div className="w-full max-w-md bg-white rounded-3xl border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-8 sm:p-10">
         {/* Header */}
         <div className="text-center mb-8">
