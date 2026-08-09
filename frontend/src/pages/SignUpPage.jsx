@@ -49,41 +49,47 @@ const SignUpPage = () => {
   };
 
   return (
-    <div className="h-screen flex justify-center items-center">
-      <div className="flex rounded-lg overflow-hidden z-50 bg-gray-300">
-        <div className="w-full bg-gray-100 min-w-80 sm:min-w-96 flex items-center justify-center">
-          <div className="max-w-md w-full p-6">
-            <h1 className="text-3xl font-semibold mb-6 text-black text-center">
-              Sign Up
-            </h1>
-            <h1 className="text-sm font-semibold mb-6 text-gray-500 text-center">
-              Join to keep track of your expenses
-            </h1>
-            <form className="space-y-4" onSubmit={handleSubmit}>
-              <InputField
-                label="Full Name"
-                id="name"
-                name="name"
-                value={signUpData.name}
-                onChange={handleChange}
-              />
-              <InputField
-                label="Username"
-                id="username"
-                name="username"
-                value={signUpData.username}
-                onChange={handleChange}
-              />
+    <div className="min-h-screen flex justify-center items-center px-4 py-10">
+      <div className="w-full max-w-md rounded-lg bg-panel border border-hairline shadow-panel overflow-hidden">
+        <div className="px-8 pt-8 pb-2 text-center border-b border-hairline">
+          <p className="text-[11px] tracking-widest2 text-muted uppercase mb-3">
+            Open an account
+          </p>
+          <h1 className="font-display text-3xl text-paper mb-2">Sign Up</h1>
+          <p className="text-sm text-muted pb-6">
+            Join to keep track of your expenses
+          </p>
+        </div>
+        <div className="p-8">
+          <form className="space-y-5" onSubmit={handleSubmit}>
+            <InputField
+              label="Full Name"
+              id="name"
+              name="name"
+              value={signUpData.name}
+              onChange={handleChange}
+            />
+            <InputField
+              label="Username"
+              id="username"
+              name="username"
+              value={signUpData.username}
+              onChange={handleChange}
+            />
 
-              <InputField
-                label="Password"
-                id="password"
-                name="password"
-                type="password"
-                value={signUpData.password}
-                onChange={handleChange}
-              />
-              <div className="flex gap-10">
+            <InputField
+              label="Password"
+              id="password"
+              name="password"
+              type="password"
+              value={signUpData.password}
+              onChange={handleChange}
+            />
+            <div>
+              <p className="block text-[11px] font-semibold uppercase tracking-widest2 text-muted mb-2">
+                Gender
+              </p>
+              <div className="flex gap-3">
                 <RadioButton
                   id="male"
                   label="Male"
@@ -101,25 +107,28 @@ const SignUpPage = () => {
                   checked={signUpData.gender === "female"}
                 />
               </div>
-
-              <div>
-                <button
-                  type="submit"
-                  className="w-full bg-black text-white p-2 rounded-md hover:bg-gray-800 focus:outline-none focus:bg-black  focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                  disabled={loading}
-                >
-                  {loading ? "Loading..." : "Sign Up"}
-                </button>
-              </div>
-            </form>
-            <div className="mt-4 text-sm text-gray-600 text-center">
-              <p>
-                Already have an account?{" "}
-                <Link to="/login" className="text-black hover:underline">
-                  Login here
-                </Link>
-              </p>
             </div>
+
+            <div>
+              <button
+                type="submit"
+                className="w-full bg-gold text-ink font-semibold p-3 rounded-md hover:bg-gold-bright focus:outline-none focus:ring-2 focus:ring-gold/50 focus:ring-offset-2 focus:ring-offset-panel transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
+                disabled={loading}
+              >
+                {loading ? "Loading..." : "Sign Up"}
+              </button>
+            </div>
+          </form>
+          <div className="mt-6 text-sm text-muted text-center">
+            <p>
+              Already have an account?{" "}
+              <Link
+                to="/login"
+                className="text-gold hover:text-gold-bright hover:underline"
+              >
+                Login here
+              </Link>
+            </p>
           </div>
         </div>
       </div>

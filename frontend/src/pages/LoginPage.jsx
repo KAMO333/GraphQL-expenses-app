@@ -36,52 +36,55 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="flex rounded-lg overflow-hidden z-50 bg-gray-300">
-        <div className="w-full bg-gray-100 min-w-80 sm:min-w-96 flex items-center justify-center">
-          <div className="max-w-md w-full p-6">
-            <h1 className="text-3xl font-semibold mb-6 text-black text-center">
-              Login
-            </h1>
-            <h1 className="text-sm font-semibold mb-6 text-gray-500 text-center">
-              Welcome back! Log in to your account
-            </h1>
-            <form className="space-y-4" onSubmit={handleSubmit}>
-              <InputField
-                label="Username"
-                id="username"
-                name="username"
-                value={loginData.username}
-                onChange={handleChange}
-              />
+    <div className="flex justify-center items-center min-h-screen px-4">
+      <div className="w-full max-w-md rounded-lg bg-panel border border-hairline shadow-panel overflow-hidden">
+        <div className="px-8 pt-8 pb-2 text-center border-b border-hairline">
+          <p className="text-[11px] tracking-widest2 text-muted uppercase mb-3">
+            Welcome back
+          </p>
+          <h1 className="font-display text-3xl text-paper mb-2">Login</h1>
+          <p className="text-sm text-muted pb-6">
+            Sign in to keep your ledger up to date
+          </p>
+        </div>
+        <div className="p-8">
+          <form className="space-y-5" onSubmit={handleSubmit}>
+            <InputField
+              label="Username"
+              id="username"
+              name="username"
+              value={loginData.username}
+              onChange={handleChange}
+            />
 
-              <InputField
-                label="Password"
-                id="password"
-                name="password"
-                type="password"
-                value={loginData.password}
-                onChange={handleChange}
-              />
-              <div>
-                <button
-                  type="submit"
-                  className="w-full bg-black text-white p-2 rounded-md hover:bg-gray-800 focus:outline-none focus:bg-black  focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed
-									"
-                  disabled={loading}
-                >
-                  {loading ? "Loading..." : "Login"}
-                </button>
-              </div>
-            </form>
-            <div className="mt-4 text-sm text-gray-600 text-center">
-              <p>
-                {"Don't"} have an account?{" "}
-                <Link to="/signup" className="text-black hover:underline">
-                  Sign Up
-                </Link>
-              </p>
+            <InputField
+              label="Password"
+              id="password"
+              name="password"
+              type="password"
+              value={loginData.password}
+              onChange={handleChange}
+            />
+            <div>
+              <button
+                type="submit"
+                className="w-full bg-gold text-ink font-semibold p-3 rounded-md hover:bg-gold-bright focus:outline-none focus:ring-2 focus:ring-gold/50 focus:ring-offset-2 focus:ring-offset-panel transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
+                disabled={loading}
+              >
+                {loading ? "Loading..." : "Login"}
+              </button>
             </div>
+          </form>
+          <div className="mt-6 text-sm text-muted text-center">
+            <p>
+              {"Don't"} have an account?{" "}
+              <Link
+                to="/signup"
+                className="text-gold hover:text-gold-bright hover:underline"
+              >
+                Sign Up
+              </Link>
+            </p>
           </div>
         </div>
       </div>

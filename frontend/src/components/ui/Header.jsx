@@ -1,19 +1,43 @@
+import { useQuery, useMutation } from "@apollo/client";
+import { GET_AUTHENTICATED_USER } from "../../graphql/queries/user.query";
+import { LOGOUT } from "../../graphql/mutations/user.mutation";
 import { Link } from "react-router-dom";
 
 const Header = () => {
+  const { data } = useQuery(GET_AUTHENTICATED_USER);
+  const [logout, { loading, client }] = useMutation(LOGOUT, {
+    refetchQueries: ["GetAuthenticatedUser"],
+  });
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      client.resetStore();
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   return (
-    <div className="mb-10">
-      <h1 className="md:text-6xl text-4xl lg:text-8xl font-bold text-center  relative z-50 text-white pt-10">
-        Expense <Link to="/">GQL</Link>
-      </h1>
-      <div className="relative mb-10 w-1/2 mx-auto hidden md:block">
-        {/* Gradients */}
-        <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm" />
-        <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4" />
-        <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/4 blur-sm" />
-        <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4" />
-      </div>
-    </div>
+    <header className="flex items-center justify-between py-6 mb-8 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Link
+        to="/"
+        className="text-2xl font-black tracking-tight text-slate-900"
+      >
+        Expense<span className="text-violet-600">GQL</span>
+      </Link>
+
+      {data?.authUser && (
+        <button
+          onClick={handleLogout}
+          disabled={loading}
+          className="bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold py-2.5 px-6 rounded-full transition-all duration-300 shadow-lg shadow-slate-900/20 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {loading ? "Logging out..." : "Logout"}
+        </button>
+      )}
+    </header>
   );
 };
+
 export default Header;

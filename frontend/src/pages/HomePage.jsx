@@ -1,26 +1,22 @@
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { useEffect, useState } from "react";
+import { useQuery } from "@apollo/client";
 
 import Cards from "../components/Cards";
 import TransactionForm from "../components/TransactionForm";
-
-import { MdLogout } from "react-icons/md";
-import toast from "react-hot-toast";
-import { useMutation, useQuery } from "@apollo/client";
-import { LOGOUT } from "../graphql/mutations/user.mutation";
 import { GET_TRANSACTION_STATISTICS } from "../graphql/queries/transaction.query";
-import { GET_AUTHENTICATED_USER } from "../graphql/queries/user.query";
-import { useEffect, useState } from "react";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
+const categoryLabelColor = {
+  saving: "rgba(63, 168, 138, 1)",
+  expense: "rgba(216, 104, 90, 1)",
+  investment: "rgba(108, 142, 227, 1)",
+};
+
 const HomePage = () => {
   const { data } = useQuery(GET_TRANSACTION_STATISTICS);
-  const { data: authUserData } = useQuery(GET_AUTHENTICATED_USER);
-
-  const [logout, { loading, client }] = useMutation(LOGOUT, {
-    refetchQueries: ["GetAuthenticatedUser"],
-  });
 
   const [chartData, setChartData] = useState({
     labels: [],
@@ -42,7 +38,7 @@ const HomePage = () => {
     if (data?.categoryStatistics) {
       const categories = data.categoryStatistics.map((stat) => stat.category);
       const totalAmounts = data.categoryStatistics.map(
-        (stat) => stat.totalAmount
+        (stat) => stat.totalAmount,
       );
 
       const backgroundColors = [];
@@ -50,14 +46,14 @@ const HomePage = () => {
 
       categories.forEach((category) => {
         if (category === "saving") {
-          backgroundColors.push("rgba(75, 192, 192)");
-          borderColors.push("rgba(75, 192, 192)");
+          backgroundColors.push("rgba(63, 168, 138, 0.85)");
+          borderColors.push("rgba(63, 168, 138, 1)");
         } else if (category === "expense") {
-          backgroundColors.push("rgba(255, 99, 132)");
-          borderColors.push("rgba(255, 99, 132)");
+          backgroundColors.push("rgba(216, 104, 90, 0.85)");
+          borderColors.push("rgba(216, 104, 90, 1)");
         } else if (category === "investment") {
-          backgroundColors.push("rgba(54, 162, 235)");
-          borderColors.push("rgba(54, 162, 235)");
+          backgroundColors.push("rgba(108, 142, 227, 0.85)");
+          borderColors.push("rgba(108, 142, 227, 1)");
         }
       });
 
@@ -75,53 +71,77 @@ const HomePage = () => {
     }
   }, [data]);
 
-  const handleLogout = async () => {
-    try {
-      await logout();
-      // Clear the Apollo Client cache FROM THE DOCS
-      // https://www.apollographql.com/docs/react/caching/advanced-topics/#:~:text=Resetting%20the%20cache,any%20of%20your%20active%20queries
-      client.resetStore();
-    } catch (error) {
-      console.error("Error logging out:", error);
-      toast.error(error.message);
-    }
-  };
+  const grandTotal = data?.categoryStatistics?.reduce(
+    (sum, stat) => sum + stat.totalAmount,
+    0,
+  );
 
   return (
-    <>
-      <div className="flex flex-col gap-6 items-center max-w-7xl mx-auto z-20 relative justify-center">
-        <div className="flex items-center">
-          <p className="md:text-4xl text-2xl lg:text-4xl font-bold text-center relative z-50 mb-4 mr-4 bg-gradient-to-r from-pink-600 via-indigo-500 to-pink-400 inline-block text-transparent bg-clip-text">
-            Spend wisely, track wisely
-          </p>
-          <img
-            src={authUserData?.authUser.profilePicture}
-            className="w-11 h-11 rounded-full border cursor-pointer"
-            alt="Avatar"
-          />
-          {!loading && (
-            <MdLogout
-              className="mx-2 w-5 h-5 cursor-pointer"
-              onClick={handleLogout}
-            />
-          )}
-          {/* loading spinner */}
-          {loading && (
-            <div className="w-6 h-6 border-t-2 border-b-2 mx-2 rounded-full animate-spin"></div>
-          )}
-        </div>
-        <div className="flex flex-wrap w-full justify-center items-center gap-6">
-          {data?.categoryStatistics.length > 0 && (
-            <div className="h-[330px] w-[330px] md:h-[360px] md:w-[360px]  ">
-              <Doughnut data={chartData} />
-            </div>
-          )}
+    <div className="flex flex-col gap-8 items-center w-full z-20 relative pb-12">
+      {}
+      <div className="w-full max-w-6xl mx-auto text-center md:text-left mb-2 mt-4 px-4 sm:px-6 lg:px-8">
+        <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
+          Dashboard
+        </h1>
+        <p className="text-slate-500 font-medium mt-2 text-lg">
+          Spend wisely, track wisely.
+        </p>
+      </div>
 
+      {}
+      <div className="flex flex-col lg:flex-row w-full max-w-6xl justify-center items-start gap-8 px-4 sm:px-6 lg:px-8">
+        {}
+        {data?.categoryStatistics.length > 0 && (
+          <div className="w-full lg:w-1/2 max-w-xl mx-auto rounded-3xl bg-white border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-8 flex flex-col items-center justify-center">
+            <div className="relative h-[280px] w-[280px] md:h-[300px] md:w-[300px]">
+              <Doughnut
+                data={chartData}
+                options={{
+                  plugins: { legend: { display: false } },
+                }}
+              />
+
+              {}
+              <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                <span className="text-[11px] font-bold uppercase tracking-widest text-slate-400">
+                  Total
+                </span>
+                <span className="font-black text-3xl text-slate-900 mt-1">
+                  ${grandTotal?.toFixed(0)}
+                </span>
+              </div>
+            </div>
+
+            {}
+            <ul className="flex gap-6 mt-8 flex-wrap justify-center">
+              {data.categoryStatistics.map((stat) => (
+                <li
+                  key={stat.category}
+                  className="flex items-center gap-2 text-sm font-medium text-slate-600 capitalize"
+                >
+                  <span
+                    className="w-2.5 h-2.5 rounded-full"
+                    style={{
+                      backgroundColor: categoryLabelColor[stat.category],
+                    }}
+                  />
+                  {stat.category}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {}
+        <div className="w-full lg:w-1/2 max-w-xl mx-auto">
           <TransactionForm />
         </div>
-        <Cards />
       </div>
-    </>
+
+      {}
+      <Cards />
+    </div>
   );
 };
+
 export default HomePage;
