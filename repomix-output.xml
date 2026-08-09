@@ -11744,105 +11744,6 @@ export default mergedTypeDefs;
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--logos" width="31.88" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 257"><defs><linearGradient id="IconifyId1813088fe1fbc01fb466" x1="-.828%" x2="57.636%" y1="7.652%" y2="78.411%"><stop offset="0%" stop-color="#41D1FF"></stop><stop offset="100%" stop-color="#BD34FE"></stop></linearGradient><linearGradient id="IconifyId1813088fe1fbc01fb467" x1="43.376%" x2="50.316%" y1="2.242%" y2="89.03%"><stop offset="0%" stop-color="#FFEA83"></stop><stop offset="8.333%" stop-color="#FFDD35"></stop><stop offset="100%" stop-color="#FFA800"></stop></linearGradient></defs><path fill="url(#IconifyId1813088fe1fbc01fb466)" d="M255.153 37.938L134.897 252.976c-2.483 4.44-8.862 4.466-11.382.048L.875 37.958c-2.746-4.814 1.371-10.646 6.827-9.67l120.385 21.517a6.537 6.537 0 0 0 2.322-.004l117.867-21.483c5.438-.991 9.574 4.796 6.877 9.62Z"></path><path fill="url(#IconifyId1813088fe1fbc01fb467)" d="M185.432.063L96.44 17.501a3.268 3.268 0 0 0-2.634 3.014l-5.474 92.456a3.268 3.268 0 0 0 3.997 3.378l24.777-5.718c2.318-.535 4.413 1.507 3.936 3.838l-7.361 36.047c-.495 2.426 1.782 4.5 4.151 3.78l15.304-4.649c2.372-.72 4.652 1.36 4.15 3.788l-11.698 56.621c-.732 3.542 3.979 5.473 5.943 2.437l1.313-2.028l72.516-144.72c1.215-2.423-.88-5.186-3.54-4.672l-25.505 4.922c-2.396.462-4.435-1.77-3.759-4.114l16.646-57.705c.677-2.35-1.37-4.583-3.769-4.113Z"></path></svg>
 </file>
 
-<file path="frontend/src/components/skeletons/TransactionFormSkeleton.jsx">
-const TransactionFormSkeleton = () => {
-  return (
-    <div className="h-screen max-w-xl mx-auto py-10 px-4">
-      <div className="rounded-lg bg-panel border border-hairline p-6">
-        <h3 className="h-6 w-1/3 bg-ink-700 rounded animate-pulse"></h3>
-
-        <ul className="mt-6 flex gap-3">
-          <li className="w-full h-11 bg-ink-700 rounded-md animate-pulse"></li>
-        </ul>
-        <ul className="mt-4 flex gap-3">
-          <li className="w-full h-11 bg-ink-700 rounded-md animate-pulse"></li>
-          <li className="w-full h-11 bg-ink-700 rounded-md animate-pulse"></li>
-          <li className="w-full h-11 bg-ink-700 rounded-md animate-pulse"></li>
-        </ul>
-        <ul className="mt-4 flex gap-3">
-          <li className="w-full h-11 bg-ink-700 rounded-md animate-pulse"></li>
-          <li className="w-full h-11 bg-ink-700 rounded-md animate-pulse"></li>
-        </ul>
-        <ul className="mt-6 flex gap-3">
-          <li className="w-full h-12 bg-gold/30 rounded-md animate-pulse"></li>
-        </ul>
-      </div>
-    </div>
-  );
-};
-export default TransactionFormSkeleton;
-</file>
-
-<file path="frontend/src/components/ui/GridBackgroun.jsx">
-const GridBackground = ({ children }) => {
-  return (
-    <div className="relative min-h-screen w-full bg-slate-50/50 overflow-hidden font-sans text-slate-900">
-      {/* Subtle modern background gradient glow */}
-      <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-violet-200/50 rounded-full mix-blend-multiply filter blur-3xl opacity-70 pointer-events-none"></div>
-      <div className="absolute top-[20%] right-[-10%] w-[500px] h-[500px] bg-rose-200/50 rounded-full mix-blend-multiply filter blur-3xl opacity-70 pointer-events-none"></div>
-
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {children}
-      </div>
-    </div>
-  );
-};
-export default GridBackground;
-</file>
-
-<file path="frontend/src/components/InputField.jsx">
-const InputField = ({ label, id, name, type = "text", onChange, value }) => {
-  return (
-    <div>
-      <label
-        htmlFor={id}
-        className="block text-[11px] font-semibold uppercase tracking-widest2 text-muted mb-2"
-      >
-        {label}
-      </label>
-      <input
-        className="w-full bg-ink-800 border border-hairline rounded-md py-2.5 px-3 text-paper placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-gold/40 focus:border-gold/60 transition-colors duration-200"
-        id={id}
-        type={type}
-        name={name}
-        value={value}
-        onChange={onChange}
-      />
-    </div>
-  );
-};
-
-export default InputField;
-</file>
-
-<file path="frontend/src/components/RadioButton.jsx">
-const RadioButton = ({ id, label, onChange, value, checked }) => {
-  return (
-    <label
-      htmlFor={id}
-      className={`flex-1 cursor-pointer text-center rounded-md border py-2.5 px-4 text-sm font-medium transition-colors duration-200 ${
-        checked
-          ? "border-gold bg-gold/10 text-gold-bright"
-          : "border-hairline bg-ink-800 text-muted hover:border-gold/40 hover:text-paper"
-      }`}
-    >
-      <input
-        name="type"
-        type="radio"
-        id={id}
-        value={value}
-        onChange={onChange}
-        checked={checked}
-        className="sr-only"
-      />
-      {label}
-    </label>
-  );
-};
-
-export default RadioButton;
-</file>
-
 <file path="frontend/src/graphql/mutations/transcation.mutation.js">
 import { gql } from "@apollo/client";
 
@@ -11976,40 +11877,6 @@ export function formatDate(timestamp) {
 const timestamp = 1704067200000;
 const formattedDate = formatDate(timestamp);
 console.log(formattedDate); // Output: "12 Dec 2023"
-</file>
-
-<file path="frontend/src/index.css">
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer base {
-  html {
-    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-  }
-
-  body {
-    @apply bg-slate-50 text-slate-900;
-  }
-
-  ::selection {
-    @apply bg-violet-200 text-violet-900;
-  }
-
-  /* Custom Scrollbar */
-  ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-  }
-  ::-webkit-scrollbar-thumb {
-    @apply bg-slate-300 rounded-full;
-  }
-  ::-webkit-scrollbar-track {
-    background-color: transparent;
-  }
-}
 </file>
 
 <file path="frontend/.gitignore">
@@ -12411,6 +12278,346 @@ const userTypeDef = `#graphql
 export default userTypeDef;
 </file>
 
+<file path="frontend/src/components/skeletons/TransactionFormSkeleton.jsx">
+const TransactionFormSkeleton = () => {
+  return (
+    <div className="h-screen max-w-xl mx-auto py-10 px-4">
+      <div className="rounded-lg bg-panel border border-hairline p-6">
+        <h3 className="h-6 w-1/3 bg-ink-700 rounded animate-pulse"></h3>
+
+        <ul className="mt-6 flex gap-3">
+          <li className="w-full h-11 bg-ink-700 rounded-md animate-pulse"></li>
+        </ul>
+        <ul className="mt-4 flex gap-3">
+          <li className="w-full h-11 bg-ink-700 rounded-md animate-pulse"></li>
+          <li className="w-full h-11 bg-ink-700 rounded-md animate-pulse"></li>
+          <li className="w-full h-11 bg-ink-700 rounded-md animate-pulse"></li>
+        </ul>
+        <ul className="mt-4 flex gap-3">
+          <li className="w-full h-11 bg-ink-700 rounded-md animate-pulse"></li>
+          <li className="w-full h-11 bg-ink-700 rounded-md animate-pulse"></li>
+        </ul>
+        <ul className="mt-6 flex gap-3">
+          <li className="w-full h-12 bg-gold/30 rounded-md animate-pulse"></li>
+        </ul>
+      </div>
+    </div>
+  );
+};
+export default TransactionFormSkeleton;
+</file>
+
+<file path="frontend/src/components/ui/GridBackgroun.jsx">
+const GridBackground = ({ children }) => {
+  return (
+    <div className="relative min-h-screen w-full bg-slate-50/50 overflow-hidden font-sans text-slate-900">
+      {/* Subtle modern background gradient glow */}
+      <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-violet-200/50 rounded-full mix-blend-multiply filter blur-3xl opacity-70 pointer-events-none"></div>
+      <div className="absolute top-[20%] right-[-10%] w-[500px] h-[500px] bg-rose-200/50 rounded-full mix-blend-multiply filter blur-3xl opacity-70 pointer-events-none"></div>
+
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {children}
+      </div>
+    </div>
+  );
+};
+export default GridBackground;
+</file>
+
+<file path="frontend/src/components/InputField.jsx">
+const InputField = ({ label, id, name, type = "text", onChange, value }) => {
+  return (
+    <div>
+      <label
+        htmlFor={id}
+        className="block text-[11px] font-semibold uppercase tracking-widest2 text-muted mb-2"
+      >
+        {label}
+      </label>
+      <input
+        className="w-full bg-ink-800 border border-hairline rounded-md py-2.5 px-3 text-paper placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-gold/40 focus:border-gold/60 transition-colors duration-200"
+        id={id}
+        type={type}
+        name={name}
+        value={value}
+        onChange={onChange}
+      />
+    </div>
+  );
+};
+
+export default InputField;
+</file>
+
+<file path="frontend/src/components/RadioButton.jsx">
+const RadioButton = ({ id, label, onChange, value, checked }) => {
+  return (
+    <label
+      htmlFor={id}
+      className={`flex-1 cursor-pointer text-center rounded-md border py-2.5 px-4 text-sm font-medium transition-colors duration-200 ${
+        checked
+          ? "border-gold bg-gold/10 text-gold-bright"
+          : "border-hairline bg-ink-800 text-muted hover:border-gold/40 hover:text-paper"
+      }`}
+    >
+      <input
+        name="type"
+        type="radio"
+        id={id}
+        value={value}
+        onChange={onChange}
+        checked={checked}
+        className="sr-only"
+      />
+      {label}
+    </label>
+  );
+};
+
+export default RadioButton;
+</file>
+
+<file path="frontend/src/graphql/queries/transaction.query.js">
+import { gql } from "@apollo/client";
+
+export const GET_TRANSACTIONS = gql`
+  query GetTransactions {
+    transactions {
+      _id
+      description
+      paymentType
+      category
+      amount
+      location
+      date
+    }
+  }
+`;
+
+export const GET_TRANSACTION = gql`
+  query GetTransaction($id: ID!) {
+    transaction(transactionId: $id) {
+      _id
+      description
+      paymentType
+      category
+      amount
+      location
+      date
+      user {
+        name
+        username
+        profilePicture
+      }
+    }
+  }
+`;
+
+export const GET_TRANSACTION_STATISTICS = gql`
+  query GetTransactionStatistics {
+    categoryStatistics {
+      category
+      totalAmount
+    }
+  }
+`;
+</file>
+
+<file path="frontend/src/index.css">
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-900;
+  }
+
+  ::selection {
+    @apply bg-violet-200 text-violet-900;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 rounded-full;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+}
+</file>
+
+<file path="frontend/eslint.config.js">
+import js from "@eslint/js";
+import globals from "globals";
+import reactHooks from "eslint-plugin-react-hooks";
+import reactRefresh from "eslint-plugin-react-refresh";
+
+export default [
+  { ignores: ["dist"] },
+  {
+    files: ["**/*.{js,jsx}"],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.browser,
+      parserOptions: {
+        ecmaVersion: "latest",
+        ecmaFeatures: { jsx: true },
+        sourceType: "module",
+      },
+    },
+    plugins: {
+      "react-hooks": reactHooks,
+      "react-refresh": reactRefresh,
+    },
+    rules: {
+      ...js.configs.recommended.rules,
+      ...reactHooks.configs.recommended.rules,
+      "no-unused-vars": ["error", { varsIgnorePattern: "^[A-Z_]" }],
+      "react-refresh/only-export-components": [
+        "warn",
+        { allowConstantExport: true },
+      ],
+      "react/prop-types": "off",
+    },
+  },
+];
+</file>
+
+<file path="frontend/package.json">
+{
+  "name": "frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.13.1",
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "chart.js": "^4.4.8",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.4.7",
+    "graphql": "^16.10.0",
+    "mini-svg-data-uri": "^1.4.4",
+    "react": "^19.0.0",
+    "react-chartjs-2": "^5.3.0",
+    "react-dom": "^19.0.0",
+    "react-hot-toast": "^2.5.2",
+    "react-icons": "^5.5.0",
+    "react-router-dom": "^7.2.0",
+    "tailwind-merge": "^3.0.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.21.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^15.15.0",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.4.17",
+    "vite": "^6.2.0"
+  }
+}
+</file>
+
+<file path="backend/resolvers/transaction.resolver.js">
+import prisma from "../db/prisma.js";
+
+const transactionResolver = {
+  Query: {
+    transactions: async (_, __, context) => {
+      const user = await context.getUser();
+      if (!user) throw new Error("Unauthorized");
+
+      return await prisma.transaction.findMany({
+        where: { userId: user.id },
+      });
+    },
+    transaction: async (_, { transactionId }) => {
+      return await prisma.transaction.findUnique({
+        where: { id: transactionId },
+      });
+    },
+    categoryStatistics: async (_, __, context) => {
+      const user = await context.getUser();
+      if (!user) throw new Error("Unauthorized");
+
+      const groupedTransactions = await prisma.transaction.groupBy({
+        by: ["category"],
+        where: { userId: user.id },
+        _sum: { amount: true },
+      });
+
+      return groupedTransactions.map((group) => ({
+        category: group.category,
+        totalAmount: group._sum.amount || 0,
+      }));
+    },
+  },
+  Mutation: {
+    createTransaction: async (_, { input }, context) => {
+      const user = await context.getUser();
+      if (!user) throw new Error("Unauthorized");
+
+      return await prisma.transaction.create({
+        data: {
+          description: input.description,
+          paymentType: input.paymentType,
+          category: input.category,
+          amount: input.amount,
+          location: input.location,
+          date: new Date(input.date),
+          userId: user.id,
+        },
+      });
+    },
+    updateTransaction: async (_, { input }) => {
+      const { transactionId, ...updateData } = input;
+      if (updateData.date) {
+        updateData.date = new Date(updateData.date);
+      }
+
+      return await prisma.transaction.update({
+        where: { id: transactionId },
+        data: updateData,
+      });
+    },
+    deleteTransaction: async (_, { transactionId }) => {
+      return await prisma.transaction.delete({
+        where: { id: transactionId },
+      });
+    },
+  },
+  Transaction: {
+    _id: (parent) => parent.id,
+    user: async (parent) => {
+      return await prisma.user.findUnique({ where: { id: parent.userId } });
+    },
+  },
+};
+
+export default transactionResolver;
+</file>
+
 <file path="frontend/src/components/Card.jsx">
 import { FaLocationDot } from "react-icons/fa6";
 import { BsCardText } from "react-icons/bs";
@@ -12757,52 +12964,6 @@ const TransactionForm = () => {
 export default TransactionForm;
 </file>
 
-<file path="frontend/src/graphql/queries/transaction.query.js">
-import { gql } from "@apollo/client";
-
-export const GET_TRANSACTIONS = gql`
-  query GetTransactions {
-    transactions {
-      _id
-      description
-      paymentType
-      category
-      amount
-      location
-      date
-    }
-  }
-`;
-
-export const GET_TRANSACTION = gql`
-  query GetTransaction($id: ID!) {
-    transaction(transactionId: $id) {
-      _id
-      description
-      paymentType
-      category
-      amount
-      location
-      date
-      user {
-        name
-        username
-        profilePicture
-      }
-    }
-  }
-`;
-
-export const GET_TRANSACTION_STATISTICS = gql`
-  query GetTransactionStatistics {
-    categoryStatistics {
-      category
-      totalAmount
-    }
-  }
-`;
-</file>
-
 <file path="frontend/src/pages/NotFoundPage.jsx">
 import { Link } from "react-router-dom";
 
@@ -12842,43 +13003,6 @@ const NotFound = () => {
 export default NotFound;
 </file>
 
-<file path="frontend/eslint.config.js">
-import js from "@eslint/js";
-import globals from "globals";
-import reactHooks from "eslint-plugin-react-hooks";
-import reactRefresh from "eslint-plugin-react-refresh";
-
-export default [
-  { ignores: ["dist"] },
-  {
-    files: ["**/*.{js,jsx}"],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
-      parserOptions: {
-        ecmaVersion: "latest",
-        ecmaFeatures: { jsx: true },
-        sourceType: "module",
-      },
-    },
-    plugins: {
-      "react-hooks": reactHooks,
-      "react-refresh": reactRefresh,
-    },
-    rules: {
-      ...js.configs.recommended.rules,
-      ...reactHooks.configs.recommended.rules,
-      "no-unused-vars": ["error", { varsIgnorePattern: "^[A-Z_]" }],
-      "react-refresh/only-export-components": [
-        "warn",
-        { allowConstantExport: true },
-      ],
-      "react/prop-types": "off",
-    },
-  },
-];
-</file>
-
 <file path="frontend/index.html">
 <!doctype html>
 <html lang="en">
@@ -12904,51 +13028,6 @@ export default [
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
-</file>
-
-<file path="frontend/package.json">
-{
-  "name": "frontend",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "@apollo/client": "^3.13.1",
-    "@tailwindcss/aspect-ratio": "^0.4.2",
-    "chart.js": "^4.4.8",
-    "clsx": "^2.1.1",
-    "framer-motion": "^12.4.7",
-    "graphql": "^16.10.0",
-    "mini-svg-data-uri": "^1.4.4",
-    "react": "^19.0.0",
-    "react-chartjs-2": "^5.3.0",
-    "react-dom": "^19.0.0",
-    "react-hot-toast": "^2.5.2",
-    "react-icons": "^5.5.0",
-    "react-router-dom": "^7.2.0",
-    "tailwind-merge": "^3.0.2"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.21.0",
-    "@types/react": "^19.0.10",
-    "@types/react-dom": "^19.0.4",
-    "@vitejs/plugin-react": "^4.3.4",
-    "autoprefixer": "^10.4.20",
-    "eslint": "^9.21.0",
-    "eslint-plugin-react-hooks": "^5.1.0",
-    "eslint-plugin-react-refresh": "^0.4.19",
-    "globals": "^15.15.0",
-    "postcss": "^8.5.3",
-    "tailwindcss": "^3.4.17",
-    "vite": "^6.2.0"
-  }
-}
 </file>
 
 <file path="frontend/tailwind.config.js">
@@ -13048,83 +13127,114 @@ function addVariablesForColors({ addBase, theme }) {
 }
 </file>
 
-<file path="backend/resolvers/transaction.resolver.js">
+<file path=".gitignore">
+.env
+node_modules/
+dist/
+/generated/prisma
+</file>
+
+<file path="prisma.config.ts">
+import "dotenv/config";
+import { defineConfig } from "prisma/config";
+
+export default defineConfig({
+  schema: "prisma/schema.prisma",
+  migrations: {
+    path: "prisma/migrations",
+  },
+  datasource: {
+    url: process.env.DIRECT_URL || process.env.DATABASE_URL,
+  },
+});
+</file>
+
+<file path="backend/resolvers/user.resolver.js">
 import prisma from "../db/prisma.js";
+import bcrypt from "bcryptjs";
 
-const transactionResolver = {
-  Query: {
-    transactions: async (_, __, context) => {
-      const user = await context.getUser();
-      if (!user) throw new Error("Unauthorized");
-
-      return await prisma.transaction.findMany({
-        where: { userId: user.id },
-      });
-    },
-    transaction: async (_, { transactionId }) => {
-      return await prisma.transaction.findUnique({
-        where: { id: transactionId },
-      });
-    },
-    categoryStatistics: async (_, __, context) => {
-      const user = await context.getUser();
-      if (!user) throw new Error("Unauthorized");
-
-      const groupedTransactions = await prisma.transaction.groupBy({
-        by: ["category"],
-        where: { userId: user.id },
-        _sum: { amount: true },
-      });
-
-      return groupedTransactions.map((group) => ({
-        category: group.category,
-        totalAmount: group._sum.amount || 0,
-      }));
-    },
-  },
+const userResolver = {
   Mutation: {
-    createTransaction: async (_, { input }, context) => {
-      const user = await context.getUser();
-      if (!user) throw new Error("Unauthorized");
+    signUp: async (_, { input }, context) => {
+      try {
+        const { username, name, password, gender } = input;
+        if (!username || !name || !password || !gender) {
+          throw new Error("All fields are required");
+        }
 
-      return await prisma.transaction.create({
-        data: {
-          description: input.description,
-          paymentType: input.paymentType,
-          category: input.category,
-          amount: input.amount,
-          location: input.location,
-          date: new Date(input.date),
-          userId: user.id,
-        },
-      });
-    },
-    updateTransaction: async (_, { input }) => {
-      const { transactionId, ...updateData } = input;
-      if (updateData.date) {
-        updateData.date = new Date(updateData.date);
+        const existingUser = await prisma.user.findUnique({
+          where: { username },
+        });
+        if (existingUser) throw new Error("User already exists");
+
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+
+        const profilePicture = `https://avatar.iran.liara.run/public/${gender === "male" ? "boy" : "girl"}?username=${username}`;
+
+        const newUser = await prisma.user.create({
+          data: {
+            username,
+            name,
+            password: hashedPassword,
+            gender,
+            profilePicture,
+          },
+        });
+
+        await context.login(newUser);
+        return newUser;
+      } catch (err) {
+        throw new Error(err.message || "Internal server error");
       }
-
-      return await prisma.transaction.update({
-        where: { id: transactionId },
-        data: updateData,
-      });
     },
-    deleteTransaction: async (_, { transactionId }) => {
-      return await prisma.transaction.delete({
-        where: { id: transactionId },
-      });
+    login: async (_, { input }, context) => {
+      try {
+        const { username, password } = input;
+        if (!username || !password) throw new Error("All fields are required");
+
+        const { user } = await context.authenticate("graphql-local", {
+          username,
+          password,
+        });
+        await context.login(user);
+        return user;
+      } catch (err) {
+        throw new Error(err.message || "Internal server error");
+      }
+    },
+    logout: async (_, __, context) => {
+      try {
+        await context.logout();
+        context.req.session.destroy((err) => {
+          if (err) throw err;
+        });
+        context.res.clearCookie("connect.sid");
+        return { message: "Logged out successfully" };
+      } catch (err) {
+        throw new Error(err.message || "Internal server error");
+      }
     },
   },
-  Transaction: {
+  Query: {
+    authUser: async (_, __, context) => {
+      return await context.getUser();
+    },
+    user: async (_, { userId }) => {
+      return await prisma.user.findUnique({ where: { id: userId } });
+    },
+  },
+  User: {
     _id: (parent) => parent.id,
-    user: async (parent) => {
-      return await prisma.user.findUnique({ where: { id: parent.userId } });
+    transactions: async (parent) => {
+      return await prisma.transaction.findMany({
+        where: { userId: parent.id },
+      });
     },
   },
 };
 
-export default transactionResolver;
+export default userResolver;
 </file>
 
 <file path="frontend/src/components/ui/Header.jsx">
@@ -13412,114 +13522,102 @@ const SignUpPage = () => {
 export default SignUpPage;
 </file>
 
-<file path=".gitignore">
-.env
-node_modules/
-dist/
-/generated/prisma
-</file>
+<file path="frontend/src/App.jsx">
+import { Navigate, Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+import SignUpPage from "./pages/SignUpPage";
+import TransactionPage from "./pages/TransactionPage";
+import NotFoundPage from "./pages/NotFoundPage";
+import Header from "./components/ui/Header";
 
-<file path="prisma.config.ts">
-import "dotenv/config";
-import { defineConfig } from "prisma/config";
+import { useQuery } from "@apollo/client";
+import { GET_AUTHENTICATED_USER } from "./graphql/queries/user.query";
+import { Toaster } from "react-hot-toast";
 
-export default defineConfig({
-  schema: "prisma/schema.prisma",
-  migrations: {
-    path: "prisma/migrations",
-  },
-  datasource: {
-    url: process.env.DIRECT_URL || process.env.DATABASE_URL,
-  },
-});
-</file>
+const App = () => {
+  const { loading, data } = useQuery(GET_AUTHENTICATED_USER);
 
-<file path="backend/resolvers/user.resolver.js">
-import prisma from "../db/prisma.js";
-import bcrypt from "bcryptjs";
+  if (loading) return null;
 
-const userResolver = {
-  Mutation: {
-    signUp: async (_, { input }, context) => {
-      try {
-        const { username, name, password, gender } = input;
-        if (!username || !name || !password || !gender) {
-          throw new Error("All fields are required");
-        }
-
-        const existingUser = await prisma.user.findUnique({
-          where: { username },
-        });
-        if (existingUser) throw new Error("User already exists");
-
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(password, salt);
-
-        const profilePicture = `https://avatar.iran.liara.run/public/${gender === "male" ? "boy" : "girl"}?username=${username}`;
-
-        const newUser = await prisma.user.create({
-          data: {
-            username,
-            name,
-            password: hashedPassword,
-            gender,
-            profilePicture,
-          },
-        });
-
-        await context.login(newUser);
-        return newUser;
-      } catch (err) {
-        throw new Error(err.message || "Internal server error");
-      }
-    },
-    login: async (_, { input }, context) => {
-      try {
-        const { username, password } = input;
-        if (!username || !password) throw new Error("All fields are required");
-
-        const { user } = await context.authenticate("graphql-local", {
-          username,
-          password,
-        });
-        await context.login(user);
-        return user;
-      } catch (err) {
-        throw new Error(err.message || "Internal server error");
-      }
-    },
-    logout: async (_, __, context) => {
-      try {
-        await context.logout();
-        context.req.session.destroy((err) => {
-          if (err) throw err;
-        });
-        context.res.clearCookie("connect.sid");
-        return { message: "Logged out successfully" };
-      } catch (err) {
-        throw new Error(err.message || "Internal server error");
-      }
-    },
-  },
-  Query: {
-    authUser: async (_, __, context) => {
-      return await context.getUser();
-    },
-    user: async (_, { userId }) => {
-      return await prisma.user.findUnique({ where: { id: userId } });
-    },
-  },
-  User: {
-    _id: (parent) => parent.id,
-    transactions: async (parent) => {
-      return await prisma.transaction.findMany({
-        where: { userId: parent.id },
-      });
-    },
-  },
+  const authUser = true;
+  return (
+    <>
+      {data?.authUser && <Header />}
+      <Routes>
+        <Route
+          path="/"
+          element={data.authUser ? <HomePage /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/login"
+          element={!data.authUser ? <LoginPage /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/signup"
+          element={!data.authUser ? <SignUpPage /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/transaction/:id"
+          element={
+            data.authUser ? <TransactionPage /> : <Navigate to="/login" />
+          }
+        />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+      <Toaster />
+    </>
+  );
 };
 
-export default userResolver;
+export default App;
+</file>
+
+<file path="backend/cron.js">
+import cron from "cron";
+import https from "https";
+
+const URL = "https://graphql-expenses-app.onrender.com";
+
+// Changed to run on the 1st and 15th of each month at midnight
+const job = new cron.CronJob("0 0 1,15 * *", function () {
+  https
+    .get(URL, (res) => {
+      if (res.statusCode === 200) {
+        console.log("GET request sent successfully");
+      } else {
+        console.log("GET request failed", res.statusCode);
+      }
+    })
+    .on("error", (e) => {
+      console.error("Error while sending request", e);
+    });
+});
+
+export default job;
+
+// Use it in your main server file
+
+// import job from "./cron.js";
+
+// job.start();
+
+// CRON JOB EXPLANATION:
+// Cron jobs are scheduled tasks that run periodically at fixed intervals or specific times
+// send 1 GET request twice a month (on the 1st and 15th)
+
+// Schedule:
+// You define a schedule using a cron expression, which consists of five fields representing:
+
+//! MINUTE, HOUR, DAY OF THE MONTH, MONTH, DAY OF THE WEEK
+
+//? EXAMPLES && EXPLANATION:
+//* 14 * * * * - Every 14 minutes
+//* 0 0 * * 0 - At midnight on every Sunday
+//* 30 3 15 * * - At 3:30 AM, on the 15th of every month
+//* 0 0 1 1 * - At midnight, on January 1st
+//* 0 * * * * - Every hour
+//* 0 0 1,15 * * - At midnight on the 1st and 15th of each month
 </file>
 
 <file path="frontend/src/pages/HomePage.jsx">
@@ -13673,62 +13771,77 @@ export default HomePage;
 </file>
 
 <file path="frontend/src/pages/TransactionPage.jsx">
-import { useMutation, useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import {
-  GET_TRANSACTION,
-  GET_TRANSACTION_STATISTICS,
-} from "../graphql/queries/transaction.query";
+import { useParams, useNavigate } from "react-router-dom";
+import { useQuery, useMutation } from "@apollo/client";
+import { GET_TRANSACTION } from "../graphql/queries/transaction.query";
 import { UPDATE_TRANSACTION } from "../graphql/mutations/transcation.mutation";
-import toast from "react-hot-toast";
 import TransactionFormSkeleton from "../components/skeletons/TransactionFormSkeleton";
+import toast from "react-hot-toast";
 
+// Reusable Tailwind classes matching our new Dribbble aesthetic
 const fieldClass =
-  "appearance-none block w-full bg-ink-800 text-paper border border-hairline rounded-md py-3 px-4 leading-tight placeholder:text-muted/50 focus:outline-none focus:ring-2 focus:ring-gold/40 focus:border-gold/60 transition-colors duration-200";
+  "w-full bg-slate-50 border border-slate-200 text-slate-800 rounded-xl py-3 px-4 focus:outline-none focus:ring-4 focus:ring-violet-500/10 focus:border-violet-500 transition-all duration-200 placeholder:text-slate-400 font-medium";
 const labelClass =
-  "block text-[11px] font-semibold uppercase tracking-widest2 text-muted mb-2";
+  "block text-xs font-bold tracking-wide text-slate-500 uppercase mb-2 ml-1";
 
 const TransactionPage = () => {
   const { id } = useParams();
-  const { loading, data } = useQuery(GET_TRANSACTION, {
+  const navigate = useNavigate();
+
+  const { loading, error, data } = useQuery(GET_TRANSACTION, {
     variables: { id: id },
   });
 
-  console.log("Transaction", data);
-
-  const [updateTransaction, { loading: loadingUpdate }] = useMutation(
+  const [updateTransaction, { loading: updating }] = useMutation(
     UPDATE_TRANSACTION,
     {
-      // https://github.com/apollographql/apollo-client/issues/5419 => refetchQueries is not working, and here is how we fixed it
-      refetchQueries: [{ query: GET_TRANSACTION_STATISTICS }],
+      refetchQueries: ["GetTransactions", "GetTransactionStatistics"],
     },
   );
 
   const [formData, setFormData] = useState({
-    description: data?.transaction?.description || "",
-    paymentType: data?.transaction?.paymentType || "",
-    category: data?.transaction?.category || "",
-    amount: data?.transaction?.amount || "",
-    location: data?.transaction?.location || "",
-    date: data?.transaction?.date || "",
+    description: "",
+    paymentType: "",
+    category: "",
+    amount: "",
+    location: "",
+    date: "",
   });
+
+  useEffect(() => {
+    if (data?.transaction) {
+      const { description, paymentType, category, amount, location, date } =
+        data.transaction;
+
+      // Format the date for the HTML input (YYYY-MM-DD)
+      const formattedDate = new Date(+date).toISOString().split("T")[0];
+
+      setFormData({
+        description,
+        paymentType,
+        category,
+        amount,
+        location: location || "",
+        date: formattedDate,
+      });
+    }
+  }, [data]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const amount = parseFloat(formData.amount); // convert amount to number bc by default it is string
-    // and the reason it's coming from an input field
     try {
       await updateTransaction({
         variables: {
           input: {
-            ...formData,
-            amount,
             transactionId: id,
+            ...formData,
+            amount: parseFloat(formData.amount),
           },
         },
       });
       toast.success("Transaction updated successfully");
+      navigate("/"); // Redirect home after successful update
     } catch (error) {
       toast.error(error.message);
     }
@@ -13736,74 +13849,69 @@ const TransactionPage = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
+    setFormData((prev) => ({
+      ...prev,
       [name]: value,
     }));
   };
 
-  useEffect(() => {
-    if (data) {
-      setFormData({
-        description: data?.transaction?.description,
-        paymentType: data?.transaction?.paymentType,
-        category: data?.transaction?.category,
-        amount: data?.transaction?.amount,
-        location: data?.transaction?.location,
-        date: new Date(+data.transaction.date).toISOString().substr(0, 10),
-      });
-    }
-  }, [data]);
-
   if (loading) return <TransactionFormSkeleton />;
+  if (error)
+    return (
+      <p className="text-center text-rose-500 font-bold mt-10">
+        Error: {error.message}
+      </p>
+    );
 
   return (
-    <div className="min-h-screen max-w-4xl mx-auto flex flex-col items-center px-4 pb-16">
-      <p className="text-[11px] tracking-widest2 text-muted uppercase mt-10 mb-3">
-        Editing entry
-      </p>
-      <p className="font-display md:text-4xl text-3xl text-center relative z-50 mb-8 text-paper">
-        Update this transaction
-      </p>
+    <div className="w-full flex flex-col items-center justify-center pt-8 pb-20 px-4 sm:px-6">
+      {/* Page Header */}
+      <div className="text-center mb-8">
+        <p className="text-xs font-bold tracking-widest uppercase text-violet-600 mb-2">
+          Editing Entry
+        </p>
+        <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
+          Update this transaction
+        </h1>
+      </div>
+
+      {/* Styled Form Container */}
       <form
-        className="w-full max-w-lg flex flex-col gap-5 p-6 rounded-lg bg-panel border border-hairline shadow-panel"
+        className="w-full max-w-xl flex flex-col gap-6 p-8 rounded-3xl bg-white border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)]"
         onSubmit={handleSubmit}
       >
-        {/* TRANSACTION */}
-        <div className="flex flex-wrap">
-          <div className="w-full">
-            <label className={labelClass} htmlFor="description">
-              Transaction
-            </label>
-            <input
-              className={fieldClass}
-              id="description"
-              name="description"
-              type="text"
-              placeholder="Rent, Groceries, Salary, etc."
-              value={formData.description}
-              onChange={handleInputChange}
-            />
-          </div>
+        <div className="w-full">
+          <label className={labelClass} htmlFor="description">
+            Transaction Name
+          </label>
+          <input
+            className={fieldClass}
+            id="description"
+            name="description"
+            type="text"
+            required
+            value={formData.description}
+            onChange={handleInputChange}
+          />
         </div>
-        {/* PAYMENT TYPE */}
-        <div className="flex flex-wrap gap-3">
+
+        <div className="flex flex-col sm:flex-row gap-4">
           <div className="w-full flex-1">
             <label className={labelClass} htmlFor="paymentType">
-              Payment Type
+              Payment
             </label>
             <div className="relative">
               <select
-                className={`${fieldClass} pr-8`}
+                className={`${fieldClass} pr-8 cursor-pointer appearance-none`}
                 id="paymentType"
                 name="paymentType"
+                value={formData.paymentType}
                 onChange={handleInputChange}
-                defaultValue={formData.paymentType}
               >
-                <option value={"card"}>Card</option>
+                <option value={"card"}>Credit Card</option>
                 <option value={"cash"}>Cash</option>
               </select>
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-muted">
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-slate-400">
                 <svg
                   className="fill-current h-4 w-4"
                   xmlns="http://www.w3.org/2000/svg"
@@ -13815,24 +13923,23 @@ const TransactionPage = () => {
             </div>
           </div>
 
-          {/* CATEGORY */}
           <div className="w-full flex-1">
             <label className={labelClass} htmlFor="category">
               Category
             </label>
             <div className="relative">
               <select
-                className={`${fieldClass} pr-8`}
+                className={`${fieldClass} pr-8 cursor-pointer appearance-none`}
                 id="category"
                 name="category"
+                value={formData.category}
                 onChange={handleInputChange}
-                defaultValue={formData.category}
               >
                 <option value={"saving"}>Saving</option>
                 <option value={"expense"}>Expense</option>
                 <option value={"investment"}>Investment</option>
               </select>
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-muted">
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-slate-400">
                 <svg
                   className="fill-current h-4 w-4"
                   xmlns="http://www.w3.org/2000/svg"
@@ -13844,25 +13951,24 @@ const TransactionPage = () => {
             </div>
           </div>
 
-          {/* AMOUNT */}
           <div className="w-full flex-1">
             <label className={labelClass} htmlFor="amount">
               Amount ($)
             </label>
             <input
-              className={`${fieldClass} font-mono`}
+              className={fieldClass}
               id="amount"
               name="amount"
               type="number"
-              placeholder="150"
+              step="0.01"
+              required
               value={formData.amount}
               onChange={handleInputChange}
             />
           </div>
         </div>
 
-        {/* LOCATION */}
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-col sm:flex-row gap-4">
           <div className="w-full flex-1">
             <label className={labelClass} htmlFor="location">
               Location
@@ -13872,13 +13978,11 @@ const TransactionPage = () => {
               id="location"
               name="location"
               type="text"
-              placeholder="New York"
               value={formData.location}
               onChange={handleInputChange}
             />
           </div>
 
-          {/* DATE */}
           <div className="w-full flex-1">
             <label className={labelClass} htmlFor="date">
               Date
@@ -13887,77 +13991,58 @@ const TransactionPage = () => {
               type="date"
               name="date"
               id="date"
-              className={`${fieldClass} font-mono`}
-              placeholder="Select date"
+              className={`${fieldClass} cursor-pointer`}
+              required
               value={formData.date}
               onChange={handleInputChange}
             />
           </div>
         </div>
-        {/* SUBMIT BUTTON */}
+
         <button
-          className="text-ink font-semibold w-full rounded-md px-4 py-3 bg-gold hover:bg-gold-bright transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
+          className="mt-2 text-white font-bold text-base w-full rounded-xl px-4 py-4 bg-violet-600 hover:bg-violet-700 shadow-lg shadow-violet-600/30 transition-all duration-300 transform hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none"
           type="submit"
-          disabled={loadingUpdate}
+          disabled={updating}
         >
-          {loadingUpdate ? "Updating..." : "Update Transaction"}
+          {updating ? "Updating..." : "Update Transaction"}
         </button>
       </form>
     </div>
   );
 };
+
 export default TransactionPage;
 </file>
 
-<file path="frontend/src/App.jsx">
-import { Navigate, Routes, Route } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import LoginPage from "./pages/LoginPage";
-import SignUpPage from "./pages/SignUpPage";
-import TransactionPage from "./pages/TransactionPage";
-import NotFoundPage from "./pages/NotFoundPage";
-import Header from "./components/ui/Header";
+<file path="frontend/src/main.jsx">
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import GridBackground from "./components/ui/GridBackgroun.jsx";
+import "./index.css";
+import App from "./App.jsx";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
-import { useQuery } from "@apollo/client";
-import { GET_AUTHENTICATED_USER } from "./graphql/queries/user.query";
-import { Toaster } from "react-hot-toast";
+const client = new ApolloClient({
+  uri:
+    import.meta.env.MODE === "development"
+      ? "http://localhost:4000/graphql"
+      : "/graphql",
+  cache: new InMemoryCache(),
+  credentials: "include",
+});
 
-const App = () => {
-  const { loading, data } = useQuery(GET_AUTHENTICATED_USER);
-
-  if (loading) return null;
-
-  const authUser = true;
-  return (
-    <>
-      {data?.authUser && <Header />}
-      <Routes>
-        <Route
-          path="/"
-          element={data.authUser ? <HomePage /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/login"
-          element={!data.authUser ? <LoginPage /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/signup"
-          element={!data.authUser ? <SignUpPage /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/transaction/:id"
-          element={
-            data.authUser ? <TransactionPage /> : <Navigate to="/login" />
-          }
-        />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-      <Toaster />
-    </>
-  );
-};
-
-export default App;
+createRoot(document.getElementById("root")).render(
+  <StrictMode>
+    <BrowserRouter>
+      <GridBackground>
+        <ApolloProvider client={client}>
+          <App />
+        </ApolloProvider>
+      </GridBackground>
+    </BrowserRouter>
+  </StrictMode>,
+);
 </file>
 
 <file path="README.md">
@@ -14013,84 +14098,6 @@ This project is [ISC](https://github.com/KAMO333/GraphQL-expenses-app/blob/maste
 
 ***
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
-</file>
-
-<file path="backend/cron.js">
-import cron from "cron";
-import https from "https";
-
-const URL = "https://graphql-expenses-app.onrender.com";
-
-// Changed to run on the 1st and 15th of each month at midnight
-const job = new cron.CronJob("0 0 1,15 * *", function () {
-  https
-    .get(URL, (res) => {
-      if (res.statusCode === 200) {
-        console.log("GET request sent successfully");
-      } else {
-        console.log("GET request failed", res.statusCode);
-      }
-    })
-    .on("error", (e) => {
-      console.error("Error while sending request", e);
-    });
-});
-
-export default job;
-
-// Use it in your main server file
-
-// import job from "./cron.js";
-
-// job.start();
-
-// CRON JOB EXPLANATION:
-// Cron jobs are scheduled tasks that run periodically at fixed intervals or specific times
-// send 1 GET request twice a month (on the 1st and 15th)
-
-// Schedule:
-// You define a schedule using a cron expression, which consists of five fields representing:
-
-//! MINUTE, HOUR, DAY OF THE MONTH, MONTH, DAY OF THE WEEK
-
-//? EXAMPLES && EXPLANATION:
-//* 14 * * * * - Every 14 minutes
-//* 0 0 * * 0 - At midnight on every Sunday
-//* 30 3 15 * * - At 3:30 AM, on the 15th of every month
-//* 0 0 1 1 * - At midnight, on January 1st
-//* 0 * * * * - Every hour
-//* 0 0 1,15 * * - At midnight on the 1st and 15th of each month
-</file>
-
-<file path="frontend/src/main.jsx">
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
-import GridBackground from "./components/ui/GridBackgroun.jsx";
-import "./index.css";
-import App from "./App.jsx";
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-
-const client = new ApolloClient({
-  uri:
-    import.meta.env.MODE === "development"
-      ? "http://localhost:4000/graphql"
-      : "/graphql",
-  cache: new InMemoryCache(),
-  credentials: "include",
-});
-
-createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <BrowserRouter>
-      <GridBackground>
-        <ApolloProvider client={client}>
-          <App />
-        </ApolloProvider>
-      </GridBackground>
-    </BrowserRouter>
-  </StrictMode>,
-);
 </file>
 
 <file path="backend/index.js">
